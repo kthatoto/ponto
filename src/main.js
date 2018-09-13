@@ -9,10 +9,16 @@ import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
 
+import VCalendar from 'v-calendar'
+import 'v-calendar/lib/v-calendar.min.css'
+
 // todo
 // cssVars()
 
 Vue.use(BootstrapVue)
+Vue.use(VCalendar, {
+  firstDayOfWeek: 2
+})
 
 /* eslint-disable no-new */
 new Vue({
