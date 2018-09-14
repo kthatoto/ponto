@@ -27,9 +27,13 @@
     "flag-icon-css": "^3.0.0",
     "font-awesome": "^4.7.0",
     "perfect-scrollbar": "^1.4.0",
+    "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
+    "pug-plain-loader": "^1.0.0",
     "simple-line-icons": "^2.4.1",
     "v-calendar": "^0.9.7",
     "vue": "^2.5.17",
+    "vue-awesome": "^3.1.2",
     "vue-chartjs": "^3.4.0",
     "vue-perfect-scrollbar": "^0.1.0",
     "vue-router": "^3.0.1"

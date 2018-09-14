@@ -58,6 +58,8 @@ const Register = () => import('@/views/pages/Register')
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 
+const Demo = () => import('@/views/Demo')
+
 Vue.use(Router)
 
 export default new Router({
@@ -65,6 +67,11 @@ export default new Router({
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
+    {
+      path: '/demo',
+      name: 'Demo',
+      component: Demo
+    },
     {
       path: '/',
       redirect: '/dashboard',

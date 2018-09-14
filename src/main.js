@@ -11,6 +11,8 @@ import router from './router'
 
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
 
 // todo
 // cssVars()
@@ -21,6 +23,7 @@ Vue.use(VCalendar, {
   popoverVisibility: 'visible',
   paneWidth: 350
 })
+Vue.component('icon', Icon)
 
 /* eslint-disable no-new */
 new Vue({
