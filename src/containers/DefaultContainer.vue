@@ -12,7 +12,7 @@
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
       </b-navbar-nav>
-      <AsideToggler class="d-none d-lg-block" />
+      <!-- <AsideToggler class="d&#45;none d&#45;lg&#45;block" /> -->
       <!--<AsideToggler class="d-lg-none" mobile />-->
     </AppHeader>
     <div class="app-body">
