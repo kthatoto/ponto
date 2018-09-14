@@ -22,7 +22,7 @@ div.wrapper
     div.pause(v-show="screen === 2")
       div.pause__main(@click="start")
         span.pause__ponto ponto
-        span にタッチしてください
+        span にタッチしよう！
     div.problem(v-show="screen === 3")
       div.problem__content
         p.problem__content__header もんだい
@@ -30,6 +30,19 @@ div.wrapper
       div.problem__options(v-for="(option, i) in problems[problemIndex].options"
         @click="selectOption(i)")
         | {{ option.content }}
+    div.finish(v-show="screen === 4")
+      div.finish__main(@click="finish")
+        span よくがんばったね！
+        br
+        span.finish__ponto ponto
+        span にタッチしよう！
+    div.result(v-show="screen === 5")
+      div.result__item(v-for="(result, i) in answers")
+        p.result__item__header もんだい{{ i + 1 }}
+        div.result__item__wrap
+          div.result__item__content {{ problems[i].problem.content }}
+          div.result__item__result
+            icon(:name="answers[i] ? 'circle' : 'times'" :class="answers[i] ? 'maru' : 'batsu'")
 </template>
 
 <script>
@@ -130,6 +143,9 @@ export default {
       } else {
         this.screen = 4
       }
+    },
+    finish () {
+      this.screen = 5
     }
   }
 }
@@ -226,6 +242,59 @@ export default {
     margin: 10px 0;
     background-color: white;
     padding: 20px;
+  }
+}
+.finish {
+  text-align: center;
+  &__main {
+    vertical-align: middle;
+    padding-top: 100px;
+    border-radius: 50%;
+    margin: 130px auto;
+    color: white;
+    font-weight: bold;
+    width: 250px;
+    height: 250px;
+    background-color: #4dbd74;
+  }
+  &__ponto {
+    font-size: larger;
+  }
+}
+.result {
+  &__item {
+    &__header {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      clear: both;
+    }
+    &__wrap {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    &__content {
+      float: left;
+      width: 80%;
+    }
+    &__result {
+      float: right;
+      width: 20%;
+      background-color: white;
+      text-align: right;
+      .maru {
+        color: red;
+        width: 30px;
+        height: 30px;
+      }
+      .batsu {
+        color: blue;
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 }
 </style>
