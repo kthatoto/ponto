@@ -17,7 +17,9 @@ import 'v-calendar/lib/v-calendar.min.css'
 
 Vue.use(BootstrapVue)
 Vue.use(VCalendar, {
-  firstDayOfWeek: 2
+  firstDayOfWeek: 1,
+  popoverVisibility: 'visible',
+  paneWidth: 350
 })
 
 /* eslint-disable no-new */

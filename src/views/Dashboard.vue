@@ -1,136 +1,101 @@
 <template>
   <div class="animated fadeIn">
     <b-row>
-      <b-col sm="6" lg="3">
+      <b-col sm="6" lg="6">
+        <v-date-picker
+          mode='single'
+          v-model='selectedDate'
+          :attributes='attributes'
+          @dayclick='dayClicked'
+          class='kalendar'>
+        </v-date-picker>
+      </b-col>
+      <b-col sm="6" lg="6">
+        <b-row class="subjectDetails">
+          <b-col sm="5" lg="5"
+            v-for="subject in ['ari', 'jap', 'sci', 'civ']"
+            :key="subject"
+            class="subjectDetails__item"
+            :class="'-' + subject">
+            <h3>{{ subjects[subject].name }}</h3>
+            <div>テスト回数：<span>2回</span></div>
+            <div>正答率：<span>89%</span></div>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
-import CardLine1ChartExample from './dashboard/CardLine1ChartExample'
-import CardLine2ChartExample from './dashboard/CardLine2ChartExample'
-import CardLine3ChartExample from './dashboard/CardLine3ChartExample'
-import CardBarChartExample from './dashboard/CardBarChartExample'
-import MainChartExample from './dashboard/MainChartExample'
-import SocialBoxChartExample from './dashboard/SocialBoxChartExample'
-import CalloutChartExample from './dashboard/CalloutChartExample'
-import { Callout } from '@coreui/vue'
-
 export default {
   name: 'dashboard',
-  components: {
-    Callout,
-    CardLine1ChartExample,
-    CardLine2ChartExample,
-    CardLine3ChartExample,
-    CardBarChartExample,
-    MainChartExample,
-    SocialBoxChartExample,
-    CalloutChartExample
-  },
-  data: function () {
+  components: {},
+  data () {
     return {
-      selected: 'Month',
-      tableItems: [
-        {
-          avatar: { url: 'img/avatars/1.jpg', status: 'success' },
-          user: { name: 'Yiorgos Avraamu', new: true, registered: 'Jan 1, 2015' },
-          country: { name: 'USA', flag: 'us' },
-          usage: { value: 50, period: 'Jun 11, 2015 - Jul 10, 2015' },
-          payment: { name: 'Mastercard', icon: 'fa fa-cc-mastercard' },
-          activity: '10 sec ago'
+      selectedDate: new Date(),
+      subjects: {
+        ari: {
+          name: '算数'
         },
-        {
-          avatar: { url: 'img/avatars/2.jpg', status: 'danger' },
-          user: { name: 'Avram Tarasios', new: false, registered: 'Jan 1, 2015' },
-          country: { name: 'Brazil', flag: 'br' },
-          usage: { value: 22, period: 'Jun 11, 2015 - Jul 10, 2015' },
-          payment: { name: 'Visa', icon: 'fa fa-cc-visa' },
-          activity: '5 minutes ago'
+        jap: {
+          name: '国語'
         },
-        {
-          avatar: { url: 'img/avatars/3.jpg', status: 'warning' },
-          user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2015' },
-          country: { name: 'India', flag: 'in' },
-          usage: { value: 74, period: 'Jun 11, 2015 - Jul 10, 2015' },
-          payment: { name: 'Stripe', icon: 'fa fa-cc-stripe' },
-          activity: '1 hour ago'
+        sci: {
+          name: '理科'
         },
+        civ: {
+          name: '社会'
+        }
+      },
+      attributes: [
         {
-          avatar: { url: 'img/avatars/4.jpg', status: '' },
-          user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2015' },
-          country: { name: 'France', flag: 'fr' },
-          usage: { value: 98, period: 'Jun 11, 2015 - Jul 10, 2015' },
-          payment: { name: 'PayPal', icon: 'fa fa-paypal' },
-          activity: 'Last month'
-        },
-        {
-          avatar: { url: 'img/avatars/5.jpg', status: 'success' },
-          user: { name: 'Agapetus Tadeáš', new: true, registered: 'Jan 1, 2015' },
-          country: { name: 'Spain', flag: 'es' },
-          usage: { value: 22, period: 'Jun 11, 2015 - Jul 10, 2015' },
-          payment: { name: 'Google Wallet', icon: 'fa fa-google-wallet' },
-          activity: 'Last week'
-        },
-        {
-          avatar: { url: 'img/avatars/6.jpg', status: 'danger' },
-          user: { name: 'Friderik Dávid', new: true, registered: 'Jan 1, 2015' },
-          country: { name: 'Poland', flag: 'pl' },
-          usage: { value: 43, period: 'Jun 11, 2015 - Jul 10, 2015' },
-          payment: { name: 'Amex', icon: 'fa fa-cc-amex' },
-          activity: 'Last week'
+          key: 1,
+          dot: { backgroundColor: 'green' },
+          dates: [new Date(), new Date(2018, 8, 10), new Date(2018, 7, 1)],
+          excludeDates: null,
+          order: 0
         }
       ],
-      tableFields: {
-        avatar: {
-          label: '<i class="icon-people"></i>',
-          class: 'text-center'
-        },
-        user: {
-          label: 'User'
-        },
-        country: {
-          label: 'Country',
-          class: 'text-center'
-        },
-        usage: {
-          label: 'Usage'
-        },
-        payment: {
-          label: 'Payment method',
-          class: 'text-center'
-        },
-        activity: {
-          label: 'Activity'
-        }
-      }
     }
   },
   methods: {
-    variant (value) {
-      let $variant
-      if (value <= 25) {
-        $variant = 'info'
-      } else if (value > 25 && value <= 50) {
-        $variant = 'success'
-      } else if (value > 50 && value <= 75) {
-        $variant = 'warning'
-      } else if (value > 75 && value <= 100) {
-        $variant = 'danger'
-      }
-      return $variant
-    },
-    flag (value) {
-      return 'flag-icon flag-icon-' + value
+    dayClicked () {
     }
   }
 }
 </script>
 
 <style>
-  /* IE fix */
-  #card-chart-01, #card-chart-02 {
-    width: 100% !important;
+.kalendar input[type=text] {
+  display: none;
+}
+.kalendar .popover-origin .popover-content-wrapper .popover-content.direction-bottom:after {
+  display: none;
+}
+</style>
+<style lang="scss" scoped>
+.kalendar {
+  margin-left: 120px;
+  transform: scale(1.5);
+}
+.subjectDetails {
+  padding-top: 13px;
+  &__item {
+    padding: 15px;
+    margin: 5px;
+    color: white;
+    &.-ari { background-color: #20a8d8; }
+    &.-jap { background-color: #f86c6b; }
+    &.-sci { background-color: #4dbd74; }
+    &.-civ { background-color: #6f42c1; }
+    h3 {
+      font-weight: bold;
+    }
+    div > span {
+      font-size: larger;
+      font-weight: bold;
+    }
   }
+}
 </style>
